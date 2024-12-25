@@ -58,7 +58,7 @@ HR_ULONG hiMasterOpenCard(HR_DEVICE *pDeviceHandle, DWORD nCardNum)
 	HR_UINT cardChnNumTmp = 0;
 	HR_UINT offset = 0;
 	HR_DEV_CTX* device;
-	if (pDeviceHandle = NULL)
+	if (pDeviceHandle == NULL)
 	{
 	return ERROR_INVALID_PARAM;
 	}

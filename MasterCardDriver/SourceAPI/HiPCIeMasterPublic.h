@@ -98,58 +98,13 @@ typedef void
 #define ERROR_INVALID_PARAM                     0x00000004
 #define ERROR_NULL_POINTER                      0x00000005
 #define ERROR_ALREADY_CLOSE                     0x00000006
-/***********************************
- *Function name : hiMilMasterOpenCard
- *Description : Open card
- *
- *input :
- *           nCardNum      Board number
- *
- *output : pDeviceHandle Point to device handle
- *
- *return :   0              Function successful
- *           0xFFFFFFF9     Open the board failed
- *           0xFFFFFFF8     The board is already open
- *
- *Limitations:--
- ***********************************/
-DLL_EXPORT HR_ULONG hiMilMasterOpenCard(HR_DEVICE *pDeviceHandle, DWORD nCardNum);
-/***********************************
- *Function name : hiMasterCloseCard
- *Description : Close card
- *
- *input :
- *           hDeviceHandle      Device handle
- *
- *output :
- *
- *return :
- *           0              Function successful
- *           0xFFFFFFF3     Close the board failed
- *           0xFFFFFFF7     The board is already close
- *
- *Limitations:--
- ***********************************/
+
+
+DLL_EXPORT HR_ULONG hiMasterOpenCard(HR_DEVICE *pDeviceHandle, DWORD nCardNum);
+
 DLL_EXPORT HR_ULONG hiMasterCloseCard(HR_DEVICE hDeviceHandle);
 
 
-/***********************************
- *Function name : hiMasterCloseCard
- *Description : Close card
- *
- *input :
- *           hDeviceHandle      Device handle
- *
- *output :
- *
- *return :
- *           0              Function successful
- *           0xFFFFFFF3     Close the board failed
- *           0xFFFFFFF7     The board is already close
- *
- *Limitations:--
- ***********************************/
-DLL_EXPORT HR_ULONG hiMasterCloseCard(HR_DEVICE hDeviceHandle);
 
 }
 ;
