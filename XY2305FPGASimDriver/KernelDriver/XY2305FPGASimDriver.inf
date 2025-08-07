@@ -1,0 +1,87 @@
+;
+; XY2305FPGASim.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Sample 
+ClassGuid={D30A9958-CA2A-4060-99C1-562A5EC60111} 
+Provider=%ManufacturerName%
+CatalogFile=XY2305FPGASim.cat
+DriverVer= 07/25/2024
+
+
+[DestinationDirs]
+DefaultDestDir = 12
+XY2305FPGASim_Device_CoInstaller_CopyFiles = 11
+
+[ClassInstall32]
+Addreg=SampleClassReg
+
+[SampleClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+XY2305FPGASim.sys  = 1,,
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTamd64
+
+[Standard.NTamd64]
+%MasterCard.DeviceDesc%=XY2305FPGASim_Device, PCI\VEN_6484&DEV_2305&SUBSYS_000710EE&REV_00; TODO: edit hw-id
+
+[XY2305FPGASim_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+XY2305FPGASim.sys
+
+[XY2305FPGASim_Device.NT.Services]
+AddService = XY2305FPGASim,%SPSVCINST_ASSOCSERVICE%, XY2305FPGASim_Service_Inst
+
+[XY2305FPGASim_Service_Inst]
+DisplayName    = %XY2305FPGASim.SVCDESC%
+ServiceType    = 1               
+StartType      = 3              
+ErrorControl   = 1              
+ServiceBinary  = %12%\XY2305FPGASim.sys
+
+
+
+
+[XY2305FPGASim_Device.NT.CoInstallers]
+AddReg=XY2305FPGASim_Device_CoInstaller_AddReg
+CopyFiles=XY2305FPGASim_Device_CoInstaller_CopyFiles
+
+[XY2305FPGASim_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[XY2305FPGASim_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+
+
+[XY2305FPGASim_Device.NT.Wdf]
+KmdfService =  XY2305FPGASim, XY2305FPGASim_wdfsect
+[XY2305FPGASim_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[XY2305FPGASim_Device.NT.HW]
+AddReg=XY2305FPGASimDeviceReg   
+
+[XY2305FPGASimDeviceReg] 
+HKR,,TxBufferSize,0x00010001,0x100000  
+HKR,,RxBufferSize,0x00010001,0x100000    
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="M_FIRE" 
+ClassName="FPGASim"
+DiskName = "XY2305FPGASim Installation Disk"
+MasterCard.DeviceDesc = "XY2305FPGASim Device"
+XY2305FPGASim.SVCDESC = "XY2305FPGASim Service"
